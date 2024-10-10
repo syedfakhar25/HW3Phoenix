@@ -49,4 +49,14 @@ defmodule TaksoWeb.UserController do
     render(conn, "show.html", user: user)
   end
 
+  #delete
+  def delete(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    Repo.delete!(user)
+
+    conn
+    |> put_flash(:info, "User deleted successfully.")
+    |> redirect(to: ~p"/users")
+  end
+
 end
