@@ -15,13 +15,12 @@ defmodule TaksoWeb.Router do
   end
 
   scope "/", TaksoWeb do
-    pipe_through :browser
+    pipe_through :browser # Use the default browser stack
 
     get "/", UserController, :index
-    get "/users/new", UserController, :new
-    post "/users", UserController, :create
-    get "/users", UserController, :index
+    resources "/users", UserController
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", TaksoWeb do

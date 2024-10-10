@@ -15,5 +15,6 @@ defmodule Takso.Accounts.User do
     user
     |> cast(attrs, [:name, :username, :password])
     |> validate_required([:name, :username, :password])
+    |> unique_constraint(:username) # if you add username uniqueness
   end
 end
