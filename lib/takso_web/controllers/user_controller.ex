@@ -23,4 +23,19 @@ defmodule TaksoWeb.UserController do
     redirect(conn, to: ~p"/users")
   end
 
+  #edit
+  def edit(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    changeset = User.changeset(user, %{})
+    render(conn, "edit.html", user: user, changeset: changeset)
+  end
+  #update
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Repo.get!(User, id)
+    changeset = User.changeset(user, user_params)
+
+    Repo.update(changeset)
+    redirect(conn, to: ~p"/users")
+  end
+
 end
