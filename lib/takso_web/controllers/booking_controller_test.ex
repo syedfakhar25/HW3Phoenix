@@ -1,7 +1,6 @@
 defmodule TaksoWeb.BookingControllerTest do
   use TaksoWeb.ConnCase
   alias Takso.{Repo,Sales.Taxi}
-
   test "POST /bookings", %{conn: conn} do
     conn = post conn, "/bookings", %{booking: [pickup_address: "Liivi 2", dropoff_address: "Muuseumi tee 2"]}
     conn = get conn, redirected_to(conn)

@@ -14,13 +14,8 @@ defmodule WhiteBreadContext do
   end
   given_ ~r/^the following taxis are on duty$/, fn state, %{table_data: table} ->
     table
-    |> Enum.map(fn taxi ->  Takso.Sales.Taxi.changeset(%Taxi{}, taxi) end)
+    |> Enum.map(fn taxi -> Takso.Sales.Taxi.changeset(%Takso.Sales.Taxi{}, taxi) end)
     |> Enum.each(fn changeset -> Repo.insert!(changeset) end)
-    {:ok, state}
-  end
-
-
-  given_ ~r/^the following taxis are on duty$/, fn state ->
     {:ok, state}
   end
   and_ ~r/^I want to go from "(?<pickup_address>[^"]+)" to "(?<dropoff_address>[^"]+)"$/,
