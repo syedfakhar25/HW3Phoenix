@@ -4,3 +4,6 @@
 <%= if @flash[:info] do %>
   <div class="alert alert-info"><%= @flash[:info] %></div>
 <% end %>
+<%= if @flash[:error] do %>
+  <div class="alert alert-danger"><%= @flash[:error] %></div>
+<% end %>

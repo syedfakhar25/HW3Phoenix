@@ -1,6 +1,14 @@
 alias Takso.{Repo, Accounts.User}
 
-[%{name: "Dio Brando", username: "DIO", password: "itsmedio"},
- %{name: "Jotaro Kujo", username: "JoJo", password: "oraoraora"}]
-|> Enum.map(fn user_data -> User.changeset(%User{}, user_data) end)
-|> Enum.each(fn changeset -> Repo.insert!(changeset) end)
+
+%Taxi{username: "Taxi1", location: "Location1", status: "available"}
+|> Taxi.changeset()
+|> Repo.insert!()
+
+%Taxi{username: "Taxi2", location: "Location2", status: "busy"}
+|> Taxi.changeset()
+|> Repo.insert!()
+
+%Taxi{username: "Taxi3", location: "Location3", status: "available"}
+|> Taxi.changeset()
+|> Repo.insert!()
