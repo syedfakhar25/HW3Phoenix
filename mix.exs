@@ -6,6 +6,8 @@ defmodule Takso.MixProject do
       app: :takso,
       version: "0.1.0",
       elixir: "~> 1.14",
+      preferred_cli_env: ["white_bread.run": :test],
+
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -58,7 +60,10 @@ defmodule Takso.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:gherkin, "~> 1.4.0"},
+      {:white_bread, "~> 4.5", only: [:test]},
+      {:hound, "~> 1.0"}
     ]
   end
 

@@ -19,6 +19,7 @@ defmodule TaksoWeb.Router do
 
     get "/", UserController, :index
     resources "/users", UserController
+    resources "/bookings", BookingController
   end
 
 
