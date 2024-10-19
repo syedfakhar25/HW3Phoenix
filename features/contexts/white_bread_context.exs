@@ -6,13 +6,17 @@ defmodule WhiteBreadContext do
     Application.ensure_all_started(:hound)
     %{}
   end
-  scenario_starting_state fn _state ->
+  scenario_starting_state fn state ->
     Hound.start_session
+    Ecto.Adapters.SQL.Sandbox.checkout(Takso.Repo)
+    Ecto.Adapters.SQL.Sandbox.mode(Takso.Repo, {:shared, self()})
     %{}
   end
-  scenario_finalize fn _status, _state ->
-    #Hound.end_session
-    nil
+  given_ ~r/^the following taxis are on duty$/, fn state, %{table_data: table} ->
+    table
+    |> Enum.map(fn taxi ->  Takso.Sales.Taxi.changeset(%Taxi{}, taxi) end)
+    |> Enum.each(fn changeset -> Repo.insert!(changeset) end)
+    {:ok, state}
   end
 
 
